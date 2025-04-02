@@ -7,65 +7,65 @@
 
 @layer base {
   :root {
-    --background: 42 38% 95%;
-    --foreground: 20 14% 4%;
+    --background: 260 30% 95%;
+    --foreground: 252 60% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 14% 4%;
+    --card-foreground: 252 60% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 14% 4%;
+    --popover-foreground: 252 60% 12%;
 
-    --primary: 24 67% 50%;
-    --primary-foreground: 60 9% 98%;
+    --primary: 258 38% 45%;
+    --primary-foreground: 300 30% 96%;
 
-    --secondary: 60 55% 96%;
-    --secondary-foreground: 24 10% 10%;
+    --secondary: 276 36% 60%;
+    --secondary-foreground: 300 30% 96%;
 
-    --muted: 60 4% 90%;
-    --muted-foreground: 25 5% 45%;
+    --muted: 300 24% 90%;
+    --muted-foreground: 252 10% 45%;
 
-    --accent: 12 76% 61%;
-    --accent-foreground: 60 9% 98%;
+    --accent: 312 50% 59%;
+    --accent-foreground: 300 30% 96%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 60 9% 98%;
+    --destructive-foreground: 300 30% 96%;
 
-    --border: 20 5% 90%;
-    --input: 20 5% 90%;
-    --ring: 24 67% 50%;
+    --border: 300 20% 90%;
+    --input: 300 20% 90%;
+    --ring: 258 38% 45%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 20 14% 8%;
-    --foreground: 60 9% 98%;
+    --background: 246 58% 12%;
+    --foreground: 300 30% 96%;
 
-    --card: 20 14% 12%;
-    --card-foreground: 60 9% 98%;
+    --card: 252 60% 12%;
+    --card-foreground: 300 30% 96%;
 
-    --popover: 20 14% 12%;
-    --popover-foreground: 60 9% 98%;
+    --popover: 252 60% 12%;
+    --popover-foreground: 300 30% 96%;
 
-    --primary: 24 67% 50%;
-    --primary-foreground: 60 9% 98%;
+    --primary: 258 38% 45%;
+    --primary-foreground: 300 30% 96%;
 
-    --secondary: 12 6% 15%;
-    --secondary-foreground: 60 9% 98%;
+    --secondary: 276 36% 40%;
+    --secondary-foreground: 300 30% 96%;
 
-    --muted: 12 6% 18%;
-    --muted-foreground: 24 5% 65%;
+    --muted: 246 25% 20%;
+    --muted-foreground: 300 24% 75%;
 
-    --accent: 12 76% 61%;
-    --accent-foreground: 60 9% 98%;
+    --accent: 312 50% 59%;
+    --accent-foreground: 300 30% 96%;
 
     --destructive: 0 62% 30%;
-    --destructive-foreground: 60 9% 98%;
+    --destructive-foreground: 300 30% 96%;
 
-    --border: 12 6% 20%;
-    --input: 12 6% 20%;
-    --ring: 24 67% 50%;
+    --border: 246 25% 25%;
+    --input: 246 25% 25%;
+    --ring: 258 38% 45%;
   }
 }
 
@@ -93,7 +93,7 @@
   }
   
   .btn-primary {
-    @apply bg-kavya-orange hover:bg-kavya-red text-white transition-colors py-2 px-4 rounded-md;
+    @apply bg-kavya-lavender hover:bg-kavya-purple text-white transition-colors py-2 px-4 rounded-md;
   }
   
   .poem-card {
@@ -114,6 +114,11 @@
   /* Card hover effect */
   .poem-card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Music beat bars */
+  .music-beat-bar {
+    @apply bg-kavya-pink rounded-full w-1.5 h-16 mx-0.5 origin-bottom;
   }
 }
 

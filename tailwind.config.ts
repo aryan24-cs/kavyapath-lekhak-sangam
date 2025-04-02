@@ -64,9 +64,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				kavya: {
-					orange: '#F1A661',
-					red: '#E38B73',
-					brown: '#A76F6F',
+					darkblue: '#0d0b33',
+					purple: '#4c2f6f',
+					lavender: '#52489f',
+					pink: '#c266a7',
+					lightpink: '#e7c8e7',
 					cream: '#FEF7CD',
 					charcoal: '#2D2424',
 					gray: '#8E9196'
@@ -119,13 +121,26 @@ export default {
 					'100%': {
 						transform: 'translateY(0px)'
 					}
+				},
+				'music-beat': {
+					'0%, 100%': {
+						transform: 'scaleY(1)',
+					},
+					'50%': {
+						transform: 'scaleY(1.5)',
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
-				'float': 'float 6s ease-in-out infinite'
+				'float': 'float 6s ease-in-out infinite',
+				'music-beat-1': 'music-beat 0.7s ease-in-out infinite',
+				'music-beat-2': 'music-beat 1.3s ease-in-out infinite',
+				'music-beat-3': 'music-beat 0.9s ease-in-out infinite',
+				'music-beat-4': 'music-beat 1.5s ease-in-out infinite',
+				'music-beat-5': 'music-beat 1.1s ease-in-out infinite'
 			}
 		}
 	},
