@@ -13,7 +13,7 @@ const CategoryBadge = ({ categoryId, className = "" }: CategoryBadgeProps) => {
   if (!category) return null;
   
   return (
-    <span className={`category-badge ${category.color} ${className}`}>
+    <span className={`category-badge ${category.color} ${className} fade-in-up`}>
       {category.name}
     </span>
   );

@@ -64,11 +64,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				kavya: {
-					orange: '#FF8C3D',
-					red: '#D94032',
-					brown: '#8A5A44',
+					orange: '#F1A661',
+					red: '#E38B73',
+					brown: '#A76F6F',
 					cream: '#FEF7CD',
-					charcoal: '#222222',
+					charcoal: '#2D2424',
 					gray: '#8E9196'
 				}
 			},
@@ -108,12 +108,24 @@ export default {
 						opacity: '1',
 						transform: 'translateY(0)'
 					}
+				},
+				'float': {
+					'0%': {
+						transform: 'translateY(0px)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					},
+					'100%': {
+						transform: 'translateY(0px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out'
+				'fade-in': 'fade-in 0.5s ease-out',
+				'float': 'float 6s ease-in-out infinite'
 			}
 		}
 	},

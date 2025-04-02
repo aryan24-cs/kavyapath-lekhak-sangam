@@ -14,7 +14,7 @@ const PoemCard = ({ poem }: PoemCardProps) => {
   const timeAgo = formatDistanceToNow(new Date(poem.createdAt), { addSuffix: true });
 
   return (
-    <div className="poem-card animate-fade-in">
+    <div className="poem-card animate-fade-in slide-in-right">
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
           <img
@@ -32,7 +32,7 @@ const PoemCard = ({ poem }: PoemCardProps) => {
       
       <h2 className="text-xl font-bold mb-3 hindi-text">{poem.title}</h2>
       
-      <div className="poem-text whitespace-pre-line mb-6 text-lg">
+      <div className="poem-text whitespace-pre-line mb-6 text-lg fade-in-up">
         {poem.content}
       </div>
       
