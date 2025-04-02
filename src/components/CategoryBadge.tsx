@@ -12,24 +12,24 @@ const CategoryBadge = ({ categoryId, className = "" }: CategoryBadgeProps) => {
   
   if (!category) return null;
   
-  // Use our new color scheme for badges
+  // Use more vibrant colors for badges
   const getBadgeColor = (categoryId: string) => {
     switch(categoryId) {
       case "love":
-        return "bg-kavya-pink text-white";
+        return "bg-gradient-to-r from-pink-500 to-purple-500 text-white";
       case "patriotic":
-        return "bg-kavya-purple text-white";
+        return "bg-gradient-to-r from-blue-500 to-purple-600 text-white";
       case "nature":
-        return "bg-kavya-lavender text-white";
+        return "bg-gradient-to-r from-green-400 to-cyan-500 text-white";
       case "spiritual":
-        return "bg-kavya-darkblue text-white";
+        return "bg-gradient-to-r from-amber-500 to-pink-500 text-white";
       default:
-        return "bg-kavya-lightpink text-kavya-darkblue";
+        return "bg-gradient-to-r from-kavya-pink to-kavya-purple text-white";
     }
   };
   
   return (
-    <span className={`category-badge ${getBadgeColor(categoryId)} ${className} fade-in-up`}>
+    <span className={`category-badge ${getBadgeColor(categoryId)} ${className} fade-in-up shadow-md`}>
       {category.name}
     </span>
   );

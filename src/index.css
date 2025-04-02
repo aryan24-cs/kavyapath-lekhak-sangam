@@ -16,16 +16,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 252 60% 12%;
 
-    --primary: 258 38% 45%;
+    --primary: 258 58% 55%;
     --primary-foreground: 300 30% 96%;
 
-    --secondary: 276 36% 60%;
+    --secondary: 276 76% 70%;
     --secondary-foreground: 300 30% 96%;
 
     --muted: 300 24% 90%;
-    --muted-foreground: 252 10% 45%;
+    --muted-foreground: 252 70% 55%;
 
-    --accent: 312 50% 59%;
+    --accent: 312 70% 65%;
     --accent-foreground: 300 30% 96%;
 
     --destructive: 0 84% 60%;
@@ -33,7 +33,7 @@
 
     --border: 300 20% 90%;
     --input: 300 20% 90%;
-    --ring: 258 38% 45%;
+    --ring: 258 58% 55%;
 
     --radius: 0.5rem;
   }
@@ -48,16 +48,16 @@
     --popover: 252 60% 12%;
     --popover-foreground: 300 30% 96%;
 
-    --primary: 258 38% 45%;
+    --primary: 258 58% 55%;
     --primary-foreground: 300 30% 96%;
 
-    --secondary: 276 36% 40%;
+    --secondary: 276 76% 60%;
     --secondary-foreground: 300 30% 96%;
 
     --muted: 246 25% 20%;
-    --muted-foreground: 300 24% 75%;
+    --muted-foreground: 300 84% 85%;
 
-    --accent: 312 50% 59%;
+    --accent: 312 80% 65%;
     --accent-foreground: 300 30% 96%;
 
     --destructive: 0 62% 30%;
@@ -65,7 +65,7 @@
 
     --border: 246 25% 25%;
     --input: 246 25% 25%;
-    --ring: 258 38% 45%;
+    --ring: 258 58% 55%;
   }
 }
 
@@ -97,12 +97,12 @@
   }
   
   .poem-card {
-    @apply bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-all;
-    @apply transform transition-transform duration-300 hover:-translate-y-1;
+    @apply bg-gradient-to-br from-white to-kavya-lightpink/30 border border-border rounded-lg p-6 shadow-md hover:shadow-xl;
+    @apply transform transition-transform duration-300 hover:-translate-y-2;
   }
   
   .category-badge {
-    @apply px-3 py-1 rounded-full text-xs font-medium;
+    @apply px-3 py-1 rounded-full text-xs font-medium shadow-sm;
   }
 
   /* Cursor animation */
@@ -113,12 +113,18 @@
 
   /* Card hover effect */
   .poem-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -2px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom right, #ffffff, rgba(231, 200, 231, 0.5));
+    border-color: rgba(194, 102, 167, 0.3);
   }
 
   /* Music beat bars */
   .music-beat-bar {
-    @apply bg-kavya-pink rounded-full w-1.5 h-16 mx-0.5 origin-bottom;
+    @apply rounded-full mx-0.5 origin-bottom shadow-glow transition-all;
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 8px 2px rgba(194, 102, 167, 0.5);
   }
 }
 
@@ -170,5 +176,61 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Update the music beats animations to be more dynamic */
+@keyframes music-beat-1 {
+  0%, 100% { height: 24px; opacity: 0.7; }
+  50% { height: 36px; opacity: 1; }
+}
+
+@keyframes music-beat-2 {
+  0%, 100% { height: 40px; opacity: 0.7; }
+  50% { height: 60px; opacity: 1; }
+}
+
+@keyframes music-beat-3 {
+  0%, 100% { height: 56px; opacity: 0.7; }
+  50% { height: 72px; opacity: 1; }
+}
+
+@keyframes music-beat-4 {
+  0%, 100% { height: 80px; opacity: 0.7; }
+  50% { height: 96px; opacity: 1; }
+}
+
+@keyframes music-beat-5 {
+  0%, 100% { height: 64px; opacity: 0.7; }
+  50% { height: 80px; opacity: 1; }
+}
+
+@layer utilities {
+  .animate-music-beat-1 {
+    animation: music-beat-1 1.2s ease-in-out infinite;
+  }
+  
+  .animate-music-beat-2 {
+    animation: music-beat-2 1.8s ease-in-out infinite;
+  }
+  
+  .animate-music-beat-3 {
+    animation: music-beat-3 1.4s ease-in-out infinite;
+  }
+  
+  .animate-music-beat-4 {
+    animation: music-beat-4 2s ease-in-out infinite;
+  }
+  
+  .animate-music-beat-5 {
+    animation: music-beat-5 1.6s ease-in-out infinite;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 8px rgba(194, 102, 167, 0.7);
+  }
+  
+  .text-neon {
+    text-shadow: 0 0 5px #fff, 0 0 10px #c266a7, 0 0 15px #c266a7, 0 0 20px #c266a7;
   }
 }
