@@ -4,23 +4,26 @@ import { PenLine, BookOpen, User, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { categories } from "@/data/categories";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <header className="border-b border-border">
       <div className="container py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <BookOpen className="w-6 h-6 text-kavya-orange" />
-          <h1 className="text-xl font-bold">
-            <span className="text-kavya-orange">काव्य</span>
-            <span>पथ</span>
-          </h1>
+          <Link to="/" className="flex items-center gap-2">
+            <BookOpen className="w-6 h-6 text-kavya-pink" />
+            <h1 className="text-xl font-bold">
+              <span className="text-kavya-pink">काव्य</span>
+              <span>पथ</span>
+            </h1>
+          </Link>
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
-          <a href="#" className="nav-link">
+          <Link to="/" className="nav-link">
             होम
-          </a>
+          </Link>
           <div className="relative group">
             <button className="nav-link flex items-center gap-1">
               श्रेणियाँ
@@ -47,17 +50,23 @@ const Navbar = () => {
         
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Button variant="outline" size="sm" className="hidden md:flex items-center gap-1">
-            <LogIn className="w-4 h-4" />
-            <span>लॉग इन</span>
-          </Button>
-          <Button className="btn-primary hidden md:flex items-center gap-1">
-            <PenLine className="w-4 h-4" />
-            <span>लिखें</span>
-          </Button>
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <User className="w-5 h-5" />
-          </Button>
+          <Link to="/signin">
+            <Button variant="outline" size="sm" className="hidden md:flex items-center gap-1">
+              <LogIn className="w-4 h-4" />
+              <span>लॉग इन</span>
+            </Button>
+          </Link>
+          <Link to="/signup">
+            <Button className="btn-primary hidden md:flex items-center gap-1">
+              <PenLine className="w-4 h-4" />
+              <span>लिखें</span>
+            </Button>
+          </Link>
+          <Link to="/dashboard">
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <User className="w-5 h-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </header>

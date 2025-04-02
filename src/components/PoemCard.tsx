@@ -30,24 +30,24 @@ const PoemCard = ({ poem }: PoemCardProps) => {
         <CategoryBadge categoryId={poem.categoryId} />
       </div>
       
-      <h2 className="text-xl font-bold mb-3 hindi-text">{poem.title}</h2>
+      <h2 className="text-xl font-bold mb-3 hindi-text text-kavya-darkblue dark:text-kavya-lightpink">{poem.title}</h2>
       
-      <div className="poem-text whitespace-pre-line mb-6 text-lg fade-in-up">
+      <div className="poem-text whitespace-pre-line mb-6 text-lg fade-in-up text-kavya-darkblue dark:text-white">
         {poem.content}
       </div>
       
       <div className="flex justify-between items-center pt-4 border-t border-border">
-        <button className="flex items-center gap-1 text-muted-foreground hover:text-kavya-orange transition-colors">
+        <button className="flex items-center gap-1 text-muted-foreground hover:text-kavya-pink transition-colors">
           <Heart className="w-5 h-5" />
           <span>{poem.likes}</span>
         </button>
         
-        <button className="flex items-center gap-1 text-muted-foreground hover:text-kavya-orange transition-colors">
+        <button className="flex items-center gap-1 text-muted-foreground hover:text-kavya-pink transition-colors">
           <MessageCircle className="w-5 h-5" />
           <span>{poem.comments}</span>
         </button>
         
-        <button className="flex items-center gap-1 text-muted-foreground hover:text-kavya-orange transition-colors">
+        <button className="flex items-center gap-1 text-muted-foreground hover:text-kavya-pink transition-colors">
           <Share2 className="w-5 h-5" />
           <span>Share</span>
         </button>
