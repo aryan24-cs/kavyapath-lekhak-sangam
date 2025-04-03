@@ -13,6 +13,14 @@ const Categories = () => {
     categories[0]?.id
   );
 
+  // Get language preference from Navbar (in a real app, this would be a global state or context)
+  // For now, we'll just simulate this by checking the URL for a query param
+  const isHindi = !window.location.search.includes('lang=en');
+
+  const getLanguageText = (hindiText: string, englishText: string) => {
+    return isHindi ? hindiText : englishText;
+  };
+
   // Get poems for the active category
   const filteredPoems = activeCategory
     ? poems.filter((poem) => poem.categoryId === activeCategory)
@@ -28,10 +36,10 @@ const Categories = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="w-5 h-5 text-kavya-pink" />
-                  <span>कविता श्रेणियाँ</span>
+                  <span>{getLanguageText("कविता श्रेणियाँ", "Poem Categories")}</span>
                 </CardTitle>
                 <CardDescription>
-                  अपनी पसंद की श्रेणी चुनें
+                  {getLanguageText("अपनी पसंद की श्रेणी चुनें", "Choose your preferred category")}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -43,8 +51,7 @@ const Categories = () => {
                       className="w-full justify-start mb-2"
                       onClick={() => setActiveCategory(category.id)}
                     >
-                      <span>{category.name}</span>
-                      <span className="ml-2 text-xs text-muted-foreground">({category.nameEn})</span>
+                      <span>{isHindi ? category.name : category.nameEn}</span>
                     </Button>
                   ))}
                 </div>
@@ -57,12 +64,15 @@ const Categories = () => {
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-3xl font-bold">
                 {activeCategory
-                  ? `${categories.find((c) => c.id === activeCategory)?.name} कविताएँ`
-                  : "सभी कविताएँ"}
+                  ? getLanguageText(
+                      `${categories.find((c) => c.id === activeCategory)?.name} कविताएँ`, 
+                      `${categories.find((c) => c.id === activeCategory)?.nameEn} Poems`
+                    )
+                  : getLanguageText("सभी कविताएँ", "All Poems")}
               </h1>
               <Button variant="outline" size="sm" className="flex items-center gap-2">
                 <Filter className="w-4 h-4" />
-                <span>फ़िल्टर</span>
+                <span>{getLanguageText("फ़िल्टर", "Filter")}</span>
               </Button>
             </div>
 
@@ -73,7 +83,9 @@ const Categories = () => {
                 ))
               ) : (
                 <div className="text-center py-10">
-                  <p className="text-muted-foreground">इस श्रेणी में कोई कविता नहीं मिली</p>
+                  <p className="text-muted-foreground">
+                    {getLanguageText("इस श्रेणी में कोई कविता नहीं मिली", "No poems found in this category")}
+                  </p>
                 </div>
               )}
             </div>

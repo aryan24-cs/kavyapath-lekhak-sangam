@@ -1,12 +1,23 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { PenLine, BookOpen, User, LogIn, Users, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { categories } from "@/data/categories";
 import { Link } from "react-router-dom";
+import { Switch } from "@/components/ui/switch";
 
 const Navbar = () => {
+  const [isHindi, setIsHindi] = useState(true);
+
+  const toggleLanguage = () => {
+    setIsHindi(!isHindi);
+  };
+
+  const getLanguageText = (hindiText: string, englishText: string) => {
+    return isHindi ? hindiText : englishText;
+  };
+
   return (
     <header className="border-b border-border">
       <div className="container py-4 flex items-center justify-between">
@@ -22,11 +33,11 @@ const Navbar = () => {
         
         <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="nav-link">
-            होम
+            {getLanguageText("होम", "Home")}
           </Link>
           <div className="relative group">
             <Link to="/categories" className="nav-link flex items-center gap-1">
-              श्रेणियाँ
+              {getLanguageText("श्रेणियाँ", "Categories")}
             </Link>
             <div className="absolute z-10 left-0 mt-2 w-48 hidden group-hover:block bg-card border border-border rounded-md shadow-lg p-2">
               {categories.map((category) => (
@@ -35,14 +46,14 @@ const Navbar = () => {
                   href={`/categories#${category.id}`}
                   className="block px-4 py-2 text-sm hover:bg-accent rounded-md"
                 >
-                  {category.name} ({category.nameEn})
+                  {isHindi ? category.name : category.nameEn}
                 </a>
               ))}
             </div>
           </div>
           <div className="relative group">
             <button className="nav-link flex items-center gap-1">
-              लेखक
+              {getLanguageText("लेखक", "Authors")}
             </button>
             <div className="absolute z-10 left-0 mt-2 w-48 hidden group-hover:block bg-card border border-border rounded-md shadow-lg p-2">
               <Link
@@ -50,29 +61,38 @@ const Navbar = () => {
                 className="block px-4 py-2 text-sm hover:bg-accent rounded-md flex items-center gap-2"
               >
                 <Users className="w-4 h-4" />
-                <span>प्रसिद्ध कवि</span>
+                <span>{getLanguageText("प्रसिद्ध कवि", "Famous Poets")}</span>
               </Link>
               <a
                 href="#"
                 className="block px-4 py-2 text-sm hover:bg-accent rounded-md"
               >
-                नए लेखक
+                {getLanguageText("नए लेखक", "New Authors")}
               </a>
             </div>
           </div>
           <a href="#" className="nav-link">
-            नई कविताएँ
+            {getLanguageText("नई कविताएँ", "New Poems")}
           </a>
         </nav>
         
         <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">{isHindi ? "हिंदी" : "EN"}</span>
+            <Switch 
+              checked={!isHindi} 
+              onCheckedChange={toggleLanguage} 
+              aria-label="Toggle language"
+            />
+          </div>
+          
           <ThemeToggle />
           <Link to="/dashboard">
             <Button 
               variant="ghost" 
               size="icon" 
               className="hidden md:flex"
-              title="डैशबोर्ड"
+              title={getLanguageText("डैशबोर्ड", "Dashboard")}
             >
               <LayoutDashboard className="w-5 h-5" />
             </Button>
@@ -80,13 +100,13 @@ const Navbar = () => {
           <Link to="/signin">
             <Button variant="outline" size="sm" className="hidden md:flex items-center gap-1">
               <LogIn className="w-4 h-4" />
-              <span>लॉग इन</span>
+              <span>{getLanguageText("लॉग इन", "Log In")}</span>
             </Button>
           </Link>
           <Link to="/signup">
             <Button className="btn-primary hidden md:flex items-center gap-1">
               <PenLine className="w-4 h-4" />
-              <span>लिखें</span>
+              <span>{getLanguageText("लिखें", "Write")}</span>
             </Button>
           </Link>
           <Link to="/dashboard">
