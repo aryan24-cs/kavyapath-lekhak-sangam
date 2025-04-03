@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,10 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import MainLayout from "@/layouts/MainLayout";
-import { Bell, BookOpen, Edit, Heart, MessageCircle, PenLine, Plus, Save, Settings, Share2, User } from "lucide-react";
+import { Bell, BookOpen, Edit, Heart, MessageCircle, PenLine, Plus, Save, Settings, Share2, Upload, User } from "lucide-react";
 import { poems } from "@/data/poems";
 import PenAnimation from "@/components/PenAnimation";
 import { useNavigate } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -21,6 +21,7 @@ const Dashboard = () => {
   const [name, setName] = useState("राजेश शर्मा");
   const [bio, setBio] = useState("मैं एक कवि हूँ जो हिंदी और उर्दू में लिखता है। मुझे प्रकृति और प्रेम पर कविताएँ लिखना पसंद है।");
   const [editing, setEditing] = useState(false);
+  const [avatar, setAvatar] = useState<string | null>(null);
   
   // New poem state
   const [newPoemTitle, setNewPoemTitle] = useState("");
@@ -80,6 +81,25 @@ const Dashboard = () => {
     setActiveTab("my-poems");
   };
   
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = (event) => {
+        if (event.target) {
+          setAvatar(event.target.result as string);
+          toast({
+            title: "प्रोफाइल फोटो अपडेट हुई",
+            description: "आपकी प्रोफाइल फोटो सफलतापूर्वक अपलोड हो गई है।",
+          });
+        }
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  };
+  
   return (
     <MainLayout>
       <div className="container py-8">
@@ -129,13 +149,30 @@ const Dashboard = () => {
                   )}
                 </div>
                 <div className="flex flex-col sm:flex-row gap-6 items-center">
-                  <div className="relative w-24 h-24 rounded-full bg-kavya-purple/20 flex items-center justify-center">
-                    <User className="w-12 h-12 text-kavya-purple" />
+                  <div className="relative">
+                    <Avatar className="w-24 h-24">
+                      {avatar ? (
+                        <AvatarImage src={avatar} alt={name} />
+                      ) : (
+                        <AvatarFallback className="bg-kavya-purple/20">
+                          <User className="w-12 h-12 text-kavya-purple" />
+                        </AvatarFallback>
+                      )}
+                    </Avatar>
                     {editing && (
                       <div className="absolute -bottom-2 -right-2">
-                        <Button size="icon" variant="outline" className="rounded-full w-8 h-8">
-                          <Edit className="w-4 h-4" />
-                        </Button>
+                        <label htmlFor="avatar-upload">
+                          <Button size="icon" variant="outline" className="rounded-full w-8 h-8 cursor-pointer">
+                            <Upload className="w-4 h-4" />
+                          </Button>
+                        </label>
+                        <input 
+                          id="avatar-upload" 
+                          type="file" 
+                          accept="image/*" 
+                          className="hidden" 
+                          onChange={handleImageUpload}
+                        />
                       </div>
                     )}
                   </div>

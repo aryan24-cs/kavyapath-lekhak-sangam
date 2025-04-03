@@ -1,6 +1,6 @@
 
 import React from "react";
-import { PenLine, BookOpen, User, LogIn, Users } from "lucide-react";
+import { PenLine, BookOpen, User, LogIn, Users, LayoutDashboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { categories } from "@/data/categories";
@@ -25,14 +25,14 @@ const Navbar = () => {
             होम
           </Link>
           <div className="relative group">
-            <button className="nav-link flex items-center gap-1">
+            <Link to="/categories" className="nav-link flex items-center gap-1">
               श्रेणियाँ
-            </button>
+            </Link>
             <div className="absolute z-10 left-0 mt-2 w-48 hidden group-hover:block bg-card border border-border rounded-md shadow-lg p-2">
               {categories.map((category) => (
                 <a
                   key={category.id}
-                  href={`/#${category.id}`}
+                  href={`/categories#${category.id}`}
                   className="block px-4 py-2 text-sm hover:bg-accent rounded-md"
                 >
                   {category.name} ({category.nameEn})
@@ -67,6 +67,16 @@ const Navbar = () => {
         
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <Link to="/dashboard">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="hidden md:flex"
+              title="डैशबोर्ड"
+            >
+              <LayoutDashboard className="w-5 h-5" />
+            </Button>
+          </Link>
           <Link to="/signin">
             <Button variant="outline" size="sm" className="hidden md:flex items-center gap-1">
               <LogIn className="w-4 h-4" />
