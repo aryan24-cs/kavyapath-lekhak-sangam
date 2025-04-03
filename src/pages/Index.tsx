@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import MainLayout from "@/layouts/MainLayout";
 import PoemList from "@/components/PoemList";
@@ -6,7 +5,6 @@ import { BookOpen, PenLine, TrendingUp, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/categories";
 import TypewriterEffect from "@/components/TypewriterEffect";
-import MusicBeats from "@/components/MusicBeats";
 import PenAnimation from "@/components/PenAnimation";
 import { Link } from "react-router-dom";
 
@@ -36,7 +34,6 @@ const Index = () => {
             </h1>
             <div className="flex justify-center space-x-4 mb-6">
               <PenAnimation />
-              <MusicBeats />
             </div>
             <div className="text-2xl md:text-3xl font-medium mb-6 min-h-[3rem] hindi-text text-kavya-lightpink">
               <TypewriterEffect 
