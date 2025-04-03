@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,38 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
+// Define types for user data
+interface UserProfile {
+  name: string;
+  bio: string;
+  avatar: string | null;
+  isHindi: boolean;
+}
+
+interface UserPoem {
+  id: string;
+  title: string;
+  content: string;
+  categoryId: string;
+  createdAt: string;
+  likes: number;
+  comments: number;
+}
+
+interface SavedPoem {
+  id: string;
+  title: string;
+  content: string;
+  categoryId: string;
+  createdAt: string;
+  likes: number;
+  comments: number;
+  author: {
+    id: string;
+    name: string;
+  };
+}
+
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const { toast } = useToast();
@@ -42,30 +74,86 @@ const Dashboard = () => {
   const [newPoemContent, setNewPoemContent] = useState("");
   const [newPoemCategory, setNewPoemCategory] = useState("prem");
   
-  // Saved poems (just using sample data for now)
-  const [savedPoems, setSavedPoems] = useState(poems.slice(0, 2));
+  // Load saved poems from localStorage or use default
+  const [savedPoems, setSavedPoems] = useState<SavedPoem[]>([]);
   
-  // User's own poems - now stored in state so we can modify it
-  const [userPoems, setUserPoems] = useState([
-    {
-      id: "user-1",
-      title: "पहली बारिश",
-      content: "बादल गरजे, बिजली चमकी\nपहली बूँद धरती पर गिरी\nमन हुआ बच्चा सा मेरा\nयादें पुरानी फिर से जगीं।",
-      categoryId: "prakriti",
-      createdAt: "2024-01-15T14:30:00Z",
-      likes: 45,
-      comments: 7
-    },
-    {
-      id: "user-2",
-      title: "दो पल का साथ",
-      content: "मिले थे हम दो पल के लिए\nकुछ बातें हुईं, कुछ यादें बनीं\nफिर बिछड़ गए हम ना जाने कब तक\nपर वो दो पल अब भी ज़िंदा हैं।",
-      categoryId: "prem",
-      createdAt: "2024-03-20T09:15:00Z",
-      likes: 67,
-      comments: 12
+  // User's own poems - load from localStorage or use default
+  const [userPoems, setUserPoems] = useState<UserPoem[]>([]);
+  
+  // Load user profile data from localStorage on component mount
+  useEffect(() => {
+    // Load user profile
+    const storedProfile = localStorage.getItem('userProfile');
+    if (storedProfile) {
+      const profileData: UserProfile = JSON.parse(storedProfile);
+      setName(profileData.name);
+      setBio(profileData.bio);
+      setAvatar(profileData.avatar);
+      setIsHindi(profileData.isHindi);
     }
-  ]);
+    
+    // Load user poems
+    const storedPoems = localStorage.getItem('userPoems');
+    if (storedPoems) {
+      setUserPoems(JSON.parse(storedPoems));
+    } else {
+      // Default poems if none exist
+      const defaultPoems = [
+        {
+          id: "user-1",
+          title: "पहली बारिश",
+          content: "बादल गरजे, बिजली चमकी\nपहली बूँद धरती पर गिरी\nमन हुआ बच्चा सा मेरा\nयादें पुरानी फिर से जगीं।",
+          categoryId: "prakriti",
+          createdAt: "2024-01-15T14:30:00Z",
+          likes: 45,
+          comments: 7
+        },
+        {
+          id: "user-2",
+          title: "दो पल का साथ",
+          content: "मिले थे हम दो पल के लिए\nकुछ बातें हुईं, कुछ यादें बनीं\nफिर बिछड़ गए हम ना जाने कब तक\nपर वो दो पल अब भी ज़िंदा हैं।",
+          categoryId: "prem",
+          createdAt: "2024-03-20T09:15:00Z",
+          likes: 67,
+          comments: 12
+        }
+      ];
+      setUserPoems(defaultPoems);
+      localStorage.setItem('userPoems', JSON.stringify(defaultPoems));
+    }
+    
+    // Load saved poems
+    const storedSavedPoems = localStorage.getItem('savedPoems');
+    if (storedSavedPoems) {
+      setSavedPoems(JSON.parse(storedSavedPoems));
+    } else {
+      // Default saved poems if none exist
+      const defaultSavedPoems = poems.slice(0, 2);
+      setSavedPoems(defaultSavedPoems);
+      localStorage.setItem('savedPoems', JSON.stringify(defaultSavedPoems));
+    }
+  }, []);
+  
+  // Save user profile data to localStorage whenever it changes
+  useEffect(() => {
+    const profileData: UserProfile = {
+      name,
+      bio,
+      avatar,
+      isHindi
+    };
+    localStorage.setItem('userProfile', JSON.stringify(profileData));
+  }, [name, bio, avatar, isHindi]);
+  
+  // Save user poems to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('userPoems', JSON.stringify(userPoems));
+  }, [userPoems]);
+  
+  // Save saved poems to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('savedPoems', JSON.stringify(savedPoems));
+  }, [savedPoems]);
   
   const getLanguageText = (hindiText: string, englishText: string) => {
     return isHindi ? hindiText : englishText;
@@ -101,7 +189,8 @@ const Dashboard = () => {
     };
     
     // Add the new poem to userPoems
-    setUserPoems([newPoem, ...userPoems]);
+    const updatedPoems = [newPoem, ...userPoems];
+    setUserPoems(updatedPoems);
     
     toast({
       title: getLanguageText("कविता प्रकाशित हुई!", "Poem Published!"),
@@ -114,7 +203,9 @@ const Dashboard = () => {
   };
   
   const handleDeletePoem = (poemId: string) => {
-    setUserPoems(userPoems.filter(poem => poem.id !== poemId));
+    const updatedPoems = userPoems.filter(poem => poem.id !== poemId);
+    setUserPoems(updatedPoems);
+    
     toast({
       title: getLanguageText("कविता हटा दी गई", "Poem Deleted"),
       description: getLanguageText("आपकी कविता सफलतापूर्वक हटा दी गई है।", "Your poem has been successfully deleted."),
@@ -122,7 +213,9 @@ const Dashboard = () => {
   };
   
   const handleUnsavePoem = (poemId: string) => {
-    setSavedPoems(savedPoems.filter(poem => poem.id !== poemId));
+    const updatedSavedPoems = savedPoems.filter(poem => poem.id !== poemId);
+    setSavedPoems(updatedSavedPoems);
+    
     toast({
       title: getLanguageText("कविता अनसेव की गई", "Poem Unsaved"),
       description: getLanguageText("कविता आपकी सेव्ड लिस्ट से हटा दी गई है।", "The poem has been removed from your saved list."),
@@ -136,7 +229,9 @@ const Dashboard = () => {
       
       reader.onload = (event) => {
         if (event.target) {
-          setAvatar(event.target.result as string);
+          const newAvatar = event.target.result as string;
+          setAvatar(newAvatar);
+          
           toast({
             title: getLanguageText("प्रोफाइल फोटो अपडेट हुई", "Profile Photo Updated"),
             description: getLanguageText("आपकी प्रोफाइल फोटो सफलतापूर्वक अपलोड हो गई है।", "Your profile photo has been successfully uploaded."),

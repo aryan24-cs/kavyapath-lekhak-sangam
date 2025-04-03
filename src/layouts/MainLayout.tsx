@@ -11,9 +11,9 @@ type MainLayoutProps = {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <ThemeProvider>
-      <div className="min-h-screen flex flex-col bg-background transition-colors duration-300">
+      <div className="min-h-screen flex flex-col transition-colors duration-300">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 text-foreground">{children}</main>
         <Footer />
       </div>
     </ThemeProvider>
