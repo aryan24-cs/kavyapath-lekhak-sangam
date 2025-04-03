@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserPlus, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import PenAnimation from "@/components/PenAnimation";
 import MainLayout from "@/layouts/MainLayout";
+import { useToast } from "@/components/ui/use-toast";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -15,6 +16,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,8 +26,12 @@ const SignUp = () => {
     // Simulate sign up process
     setTimeout(() => {
       setIsLoading(false);
+      toast({
+        title: "अकाउंट बन गया है!",
+        description: "आपका काव्यपथ अकाउंट सफलतापूर्वक बन गया है।",
+      });
       // Redirect to dashboard after successful registration
-      window.location.href = "/dashboard";
+      navigate("/dashboard");
     }, 1500);
   };
 

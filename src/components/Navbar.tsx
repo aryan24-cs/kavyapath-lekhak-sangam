@@ -1,6 +1,6 @@
 
 import React from "react";
-import { PenLine, BookOpen, User, LogIn } from "lucide-react";
+import { PenLine, BookOpen, User, LogIn, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { categories } from "@/data/categories";
@@ -32,7 +32,7 @@ const Navbar = () => {
               {categories.map((category) => (
                 <a
                   key={category.id}
-                  href={`#${category.id}`}
+                  href={`/#${category.id}`}
                   className="block px-4 py-2 text-sm hover:bg-accent rounded-md"
                 >
                   {category.name} ({category.nameEn})
@@ -40,9 +40,26 @@ const Navbar = () => {
               ))}
             </div>
           </div>
-          <a href="#" className="nav-link">
-            लेखक
-          </a>
+          <div className="relative group">
+            <button className="nav-link flex items-center gap-1">
+              लेखक
+            </button>
+            <div className="absolute z-10 left-0 mt-2 w-48 hidden group-hover:block bg-card border border-border rounded-md shadow-lg p-2">
+              <Link
+                to="/famous-poets"
+                className="block px-4 py-2 text-sm hover:bg-accent rounded-md flex items-center gap-2"
+              >
+                <Users className="w-4 h-4" />
+                <span>प्रसिद्ध कवि</span>
+              </Link>
+              <a
+                href="#"
+                className="block px-4 py-2 text-sm hover:bg-accent rounded-md"
+              >
+                नए लेखक
+              </a>
+            </div>
+          </div>
           <a href="#" className="nav-link">
             नई कविताएँ
           </a>
