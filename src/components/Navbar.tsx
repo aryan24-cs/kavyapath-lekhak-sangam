@@ -157,9 +157,6 @@ const Navbar = () => {
             <Music className="w-4 h-4" />
             <span>{getLanguageText("आध्यात्मिक काव्य", "Spiritual Poems")}</span>
           </Link>
-          <a href="#" className="nav-link">
-            {getLanguageText("नई कविताएँ", "New Poems")}
-          </a>
         </nav>
         
         <div className="flex items-center gap-3">
