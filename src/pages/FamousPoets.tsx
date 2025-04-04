@@ -3,9 +3,8 @@ import React from "react";
 import MainLayout from "@/layouts/MainLayout";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, MessageCircle, Share2, BookOpen, ExternalLink, BookmarkPlus, Headphones } from "lucide-react";
+import { Heart, MessageCircle, Share2, BookOpen, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
 
 type FamousPoet = {
   id: string;
@@ -104,126 +103,10 @@ const famousPoets: FamousPoet[] = [
         excerpt: "मेरे तो गिरधर गोपाल, दूसरो न कोई\nजाके सिर मोर मुकुट, मेरो पति सोई।"
       }
     ]
-  },
-  // Adding new poets
-  {
-    id: "6",
-    name: "कबीरदास",
-    lifespan: "1398-1518",
-    bio: "कबीर भारतीय इतिहास के महानतम संत कवियों में से एक थे। उन्होंने अपनी दोहों के माध्यम से समाज में व्याप्त बुराइयों और आडंबरों का विरोध किया।",
-    image: "https://i.pravatar.cc/150?img=52",
-    famousWorks: [
-      {
-        title: "साखी",
-        excerpt: "बड़ा हुआ तो क्या हुआ, जैसे पेड़ खजूर।\nपंथी को छाया नहीं, फल लागे अति दूर॥"
-      },
-      {
-        title: "निर्गुण भजन",
-        excerpt: "माला फेरत जुग भया, फिरा न मन का फेर।\nकर का मनका डारि दे, मन का मनका फेर॥"
-      }
-    ]
-  },
-  {
-    id: "7",
-    name: "तुलसीदास",
-    lifespan: "1532-1623",
-    bio: "गोस्वामी तुलसीदास हिंदी साहित्य के सर्वश्रेष्ठ कवियों में से एक थे। उनकी रचना 'रामचरितमानस' हिंदी साहित्य का अमूल्य रत्न है।",
-    image: "https://i.pravatar.cc/150?img=53",
-    famousWorks: [
-      {
-        title: "रामचरितमानस",
-        excerpt: "मंगल भवन अमंगल हारी। द्रवहु सुदसरथ अजिर बिहारी॥\nमंगल मूरति मारुत नंदन। हरहु कलेस भव निकर निकंदन॥"
-      },
-      {
-        title: "विनय पत्रिका",
-        excerpt: "कहत नटत रीझत खिझत, मिलत खिलत लजिआत।\nभरे भाव में करत हैं, नैनन ही सों बात॥"
-      }
-    ]
-  },
-  {
-    id: "8",
-    name: "सूरदास",
-    lifespan: "1478-1583",
-    bio: "सूरदास कृष्ण भक्ति शाखा के प्रमुख कवि थे। उनकी 'सूरसागर' में कृष्ण के बाल रूप का अद्भुत वर्णन मिलता है।",
-    image: "https://i.pravatar.cc/150?img=54",
-    famousWorks: [
-      {
-        title: "सूरसागर",
-        excerpt: "मैया मोरी मैं नहीं माखन खायो।\nख्याल परै बकि देत मोसों, ब्याज उठायो॥"
-      },
-      {
-        title: "भ्रमरगीत",
-        excerpt: "उधौ! मन न भए दस-बीस।\nएक हुतौ सौ गयौ श्याम संग, कौ अवराधै ईस॥"
-      }
-    ]
-  },
-  {
-    id: "9",
-    name: "जयशंकर प्रसाद",
-    lifespan: "1889-1937",
-    bio: "जयशंकर प्रसाद छायावादी युग के चार प्रमुख स्तंभों में से एक थे। कामायनी और आंसू उनकी प्रसिद्ध कृतियां हैं।",
-    image: "https://i.pravatar.cc/150?img=55",
-    famousWorks: [
-      {
-        title: "कामायनी",
-        excerpt: "आनंद सिंधु में आज उठा दिव्य तरंग,\nदेख रहा चिंमय चंचल नर्तक वैभव अनंग।"
-      },
-      {
-        title: "आंसू",
-        excerpt: "अश्रु मेरे विगत जीवन की स्मृतियाँ हैं,\nप्राण बेलि पर अटके मुरझाये फूल-से,\nमृदु नभ निझर में परिचित हैं स्फीतिमान,\nस्वागत को खड़े तटवर्ती कल्पतरु से।"
-      }
-    ]
-  },
-  {
-    id: "10",
-    name: "सुमित्रानंदन पंत",
-    lifespan: "1900-1977",
-    bio: "सुमित्रानंदन पंत छायावादी युग के अन्य प्रमुख कवि थे। उनकी कविताओं में प्रकृति और मानव के बीच गहरे संबंध का चित्रण मिलता है।",
-    image: "https://i.pravatar.cc/150?img=56",
-    famousWorks: [
-      {
-        title: "पल्लव",
-        excerpt: "आकुल अलक, रुचिर रजनीगंधा,\nमादक मंजरियों की माला,\nमृदु मुसकान लिए अधरों पर,\nमुझसे कहती है वनमाला।"
-      },
-      {
-        title: "ग्राम्या",
-        excerpt: "अरे तुम कौन हो बहने?\nकहाँ देश से आई हो?\nकहाँ चली हो? क्या चाहती हो?\nक्यों इतनी सुकुमार बनी हो?"
-      }
-    ]
   }
 ];
 
 const FamousPoets = () => {
-  const { toast } = useToast();
-  
-  const handleLike = (poetName: string) => {
-    toast({
-      title: "कविता पसंद की गई",
-      description: `आपने ${poetName} की कविता को पसंद किया`,
-    });
-  };
-  
-  const handleBookmark = (poetName: string) => {
-    toast({
-      title: "कविता सहेजी गई",
-      description: `आपने ${poetName} की कविता को सहेज लिया है`,
-    });
-  };
-  
-  const handleShare = (poetName: string) => {
-    toast({
-      title: "शेयर करें",
-      description: `${poetName} की कविता को शेयर करें`,
-    });
-  };
-  
-  const handleListen = (poetName: string, poemTitle: string) => {
-    toast({
-      title: "कविता सुनें",
-      description: `${poetName} की "${poemTitle}" कविता सुन रहे हैं`,
-    });
-  };
-
   return (
     <MainLayout>
       <div className="container py-12">
@@ -244,7 +127,7 @@ const FamousPoets = () => {
           </Link>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           {famousPoets.map((poet) => (
             <Card key={poet.id} className="overflow-hidden animate-fade-in">
               <CardHeader>
@@ -267,60 +150,29 @@ const FamousPoets = () => {
                   <h3 className="font-semibold text-lg text-kavya-purple">प्रमुख रचनाएँ</h3>
                   {poet.famousWorks.map((work, index) => (
                     <div key={index} className="bg-muted p-4 rounded-md shadow-sm">
-                      <div className="flex justify-between items-center mb-2">
-                        <h4 className="font-medium text-kavya-darkblue dark:text-kavya-lightpink">
-                          {work.title}
-                        </h4>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="flex items-center gap-1"
-                          onClick={() => handleListen(poet.name, work.title)}
-                        >
-                          <Headphones className="h-4 w-4 text-kavya-purple" />
-                        </Button>
-                      </div>
+                      <h4 className="font-medium mb-2 text-kavya-darkblue dark:text-kavya-lightpink">
+                        {work.title}
+                      </h4>
                       <p className="whitespace-pre-line text-foreground">{work.excerpt}</p>
                     </div>
                   ))}
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
-                <div className="flex items-center gap-3">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="flex items-center gap-1"
-                    onClick={() => handleLike(poet.name)}
-                  >
+                <div className="flex items-center gap-4">
+                  <Button variant="ghost" size="sm" className="flex items-center gap-1">
                     <Heart className="h-4 w-4 text-kavya-pink" />
                     <span>पसंद करें</span>
                   </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="flex items-center gap-1"
-                    onClick={() => handleBookmark(poet.name)}
-                  >
-                    <BookmarkPlus className="h-4 w-4 text-kavya-purple" />
-                    <span>सहेजें</span>
-                  </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="flex items-center gap-1"
-                    onClick={() => handleShare(poet.name)}
-                  >
+                  <Button variant="ghost" size="sm" className="flex items-center gap-1">
                     <Share2 className="h-4 w-4" />
                     <span>शेयर करें</span>
                   </Button>
                 </div>
-                <Link to={`/poet/${poet.id}`}>
-                  <Button variant="outline" size="sm" className="flex items-center gap-1">
-                    <ExternalLink className="h-4 w-4" />
-                    <span>और जानें</span>
-                  </Button>
-                </Link>
+                <Button variant="outline" size="sm" className="flex items-center gap-1">
+                  <ExternalLink className="h-4 w-4" />
+                  <span>और जानें</span>
+                </Button>
               </CardFooter>
             </Card>
           ))}
