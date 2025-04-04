@@ -1,43 +1,37 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Index from "@/pages/Index";
+import Categories from "@/pages/Categories";
+import Dashboard from "@/pages/Dashboard";
+import SignIn from "@/pages/SignIn";
+import SignUp from "@/pages/SignUp";
+import NotFound from "@/pages/NotFound";
+import SpiritualPoems from "@/pages/SpiritualPoems";
+import FamousPoets from "@/pages/FamousPoets";
+import PoetProfile from "@/pages/PoetProfile";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
-import FamousPoets from "./pages/FamousPoets";
-import Categories from "./pages/Categories";
-import SpiritualPoems from "./pages/SpiritualPoems";
+import { Toaster } from "@/components/ui/toaster";
+import "./App.css";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light" storageKey="kavyapath-theme">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/spiritual-poems" element={<SpiritualPoems />} />
+          <Route path="/famous-poets" element={<FamousPoets />} />
+          <Route path="/poet/:id" element={<PoetProfile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/famous-poets" element={<FamousPoets />} />
-            <Route path="/categories" element={<Categories />} />
-            <Route path="/spiritual-poems" element={<SpiritualPoems />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      </Router>
     </ThemeProvider>
-  </QueryClientProvider>
-);
+  );
+}
 
 export default App;

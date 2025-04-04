@@ -4,14 +4,15 @@ import { PenLine, BookOpen, User, LogIn, Users, LayoutDashboard, Search, Music }
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { categories } from "@/data/categories";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Switch } from "@/components/ui/switch";
 import { 
   Dialog, 
   DialogContent, 
   DialogHeader, 
   DialogTitle,
-  DialogTrigger 
+  DialogTrigger,
+  DialogDescription
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
@@ -38,6 +39,8 @@ const Navbar = () => {
   const [isHindi, setIsHindi] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState(famousPoets);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleLanguage = () => {
     setIsHindi(!isHindi);
@@ -63,6 +66,11 @@ const Navbar = () => {
     );
     
     setSearchResults(results);
+  };
+  
+  const handlePoetClick = (poetId: string) => {
+    navigate(`/poet/${poetId}`);
+    setDialogOpen(false);
   };
 
   return (
@@ -103,7 +111,7 @@ const Navbar = () => {
               {getLanguageText("लेखक", "Authors")}
             </button>
             <div className="absolute z-10 left-0 mt-2 w-48 hidden group-hover:block bg-card border border-border rounded-md shadow-lg p-2">
-              <Dialog>
+              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="ghost" className="w-full justify-start text-sm py-2 px-4 flex items-center gap-2">
                     <Search className="w-4 h-4" />
@@ -113,6 +121,9 @@ const Navbar = () => {
                 <DialogContent className="sm:max-w-md">
                   <DialogHeader>
                     <DialogTitle>{getLanguageText("लेखक खोजें", "Search Authors")}</DialogTitle>
+                    <DialogDescription>
+                      {getLanguageText("प्रसिद्ध कवियों के नाम से खोजें", "Search by the names of famous poets")}
+                    </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4 py-4">
                     <Input
@@ -129,7 +140,11 @@ const Navbar = () => {
                             className="p-2 hover:bg-accent rounded flex items-center justify-between cursor-pointer"
                           >
                             <span>{isHindi ? poet.name : poet.nameEn}</span>
-                            <Button variant="ghost" size="sm">
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handlePoetClick(poet.id)}
+                            >
                               {getLanguageText("देखें", "View")}
                             </Button>
                           </div>
