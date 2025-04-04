@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 260 30% 95%;
+    --background: 258 30% 95%;
     --foreground: 252 60% 12%;
 
     --card: 0 0% 100%;
@@ -16,24 +16,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 252 60% 12%;
 
-    --primary: 258 58% 55%;
+    --primary: 270 70% 55%;
     --primary-foreground: 300 30% 96%;
 
-    --secondary: 276 76% 70%;
+    --secondary: 285 80% 70%;
     --secondary-foreground: 300 30% 96%;
 
-    --muted: 300 24% 90%;
-    --muted-foreground: 252 70% 55%;
+    --muted: 290 24% 90%;
+    --muted-foreground: 270 70% 55%;
 
-    --accent: 312 70% 65%;
+    --accent: 310 75% 65%;
     --accent-foreground: 300 30% 96%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 300 30% 96%;
 
-    --border: 300 20% 90%;
-    --input: 300 20% 90%;
-    --ring: 258 58% 55%;
+    --border: 290 20% 90%;
+    --input: 290 20% 90%;
+    --ring: 270 70% 55%;
 
     --radius: 0.5rem;
   }
@@ -48,16 +48,16 @@
     --popover: 252 60% 12%;
     --popover-foreground: 300 30% 96%;
 
-    --primary: 258 58% 55%;
+    --primary: 270 70% 55%;
     --primary-foreground: 300 30% 96%;
 
-    --secondary: 276 76% 60%;
+    --secondary: 285 80% 60%;
     --secondary-foreground: 300 30% 96%;
 
     --muted: 246 25% 20%;
     --muted-foreground: 300 84% 85%;
 
-    --accent: 312 80% 65%;
+    --accent: 310 85% 65%;
     --accent-foreground: 300 30% 96%;
 
     --destructive: 0 62% 30%;
@@ -65,7 +65,7 @@
 
     --border: 246 25% 25%;
     --input: 246 25% 25%;
-    --ring: 258 58% 55%;
+    --ring: 270 70% 55%;
   }
 }
 
@@ -76,7 +76,7 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    background: linear-gradient(135deg, #4c2f6f 0%, #9171e6 50%, #c266a7 100%);
+    background: linear-gradient(135deg, #3a1c71 0%, #7850b8 50%, #d76d77 100%);
     background-attachment: fixed;
   }
 

@@ -11,6 +11,7 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import FamousPoets from "./pages/FamousPoets";
 import Categories from "./pages/Categories";
+import SpiritualPoems from "./pages/SpiritualPoems";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/famous-poets" element={<FamousPoets />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/spiritual-poems" element={<SpiritualPoems />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

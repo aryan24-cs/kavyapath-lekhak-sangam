@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import MainLayout from "@/layouts/MainLayout";
 import PoemList from "@/components/PoemList";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { categories } from "@/data/categories";
 import TypewriterEffect from "@/components/TypewriterEffect";
 import PenAnimation from "@/components/PenAnimation";
+import DailyShlok from "@/components/DailyShlok";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -68,6 +70,11 @@ const Index = () => {
           {/* Left Sidebar */}
           <div className="lg:col-span-1 order-2 lg:order-1">
             <div className="sticky top-6">
+              {/* Daily Shlok Widget */}
+              <div className="mb-6 fade-in-up">
+                <DailyShlok />
+              </div>
+
               <div className="bg-card border border-border rounded-lg p-6 mb-6 fade-in-up">
                 <h2 className="text-xl font-bold mb-4 flex items-center gap-2 text-kavya-darkblue dark:text-kavya-lightpink">
                   <TrendingUp className="w-5 h-5 text-kavya-pink" />
