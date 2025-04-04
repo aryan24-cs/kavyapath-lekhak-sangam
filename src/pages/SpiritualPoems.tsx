@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import PoemCard from "@/components/PoemCard";
 import { useTheme } from "@/contexts/ThemeContext";
 import { spiritualPoems } from "@/data/spiritualPoems";
+import { toast } from "@/hooks/use-toast";
 
 const SpiritualPoems = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
@@ -29,7 +30,14 @@ const SpiritualPoems = () => {
       if (isMusicPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play();
+        audioRef.current.play().catch(error => {
+          console.error("Error playing audio:", error);
+          toast({
+            title: "ध्वनि चलाने में समस्या",
+            description: "कृपया पेज को दोबारा लोड करें या बाद में प्रयास करें",
+            variant: "destructive"
+          });
+        });
       }
       setIsMusicPlaying(!isMusicPlaying);
     }
@@ -64,7 +72,15 @@ const SpiritualPoems = () => {
 
           <div className="grid gap-6 md:grid-cols-2">
             {spiritualPoems.map((poem) => (
-              <PoemCard key={poem.id} poem={poem} />
+              <PoemCard 
+                key={poem.id} 
+                poem={poem} 
+                audioType="spiritual"
+                allowComments={true}
+                allowSave={true}
+                allowLike={true}
+                allowShare={true}
+              />
             ))}
           </div>
         </div>
