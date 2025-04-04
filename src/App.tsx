@@ -15,7 +15,7 @@ import "./App.css";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="kavyapath-theme">
+    <ThemeProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
